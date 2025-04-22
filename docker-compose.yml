@@ -13,8 +13,8 @@ services:
     volumes:
       - registry-dev:/data
       - ./auth:/auth
-    networks:
-      - registry-dev
+    # networks:
+    #   - registry-dev
 
   # nginx-dev:
   #   image: nginx:alpine
@@ -35,16 +35,21 @@ services:
     container_name: portainer-dev
     restart: always
     ports:
-      - "9000:9000"
+      # - "9000:9000"
+      - 9443:9443
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      - registry-dev
+      - portainer-dev:/data
+#     networks:
+#       - registry-dev
 
-networks:
-  registry-dev:
-    driver: bridge
+
+# networks:
+#   registry-dev:
+#     driver: bridge
+
+
 
 volumes:
   registry-dev:
-    driver: local
+  portainer-dev:
